@@ -9,7 +9,6 @@ WORKDIR /app
 
 COPY requirements.txt requirements.txt
 
-RUN pip3 install flask
 RUN pip3 install -r requirements.txt
 
 # 소스코드를 이미지에 추가하는 것 위의 카피와 같은 파일을 복사한다는뜻
