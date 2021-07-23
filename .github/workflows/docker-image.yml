@@ -13,8 +13,8 @@ jobs:
       uses: actions/checkout@v2
       
       # 러너에 도커가돌아갈 수 있는 환경설치
-   # - name: Set up docker buildx
-   #   uses: docker/setup-buildx-action@v1
+    - name: Set up docker buildx
+      uses: docker/setup-buildx-action@v1
       
      # 도커허브 로그인
     - name: Login to DockerHub                      
@@ -37,7 +37,7 @@ jobs:
         file: ./dockerfile
         platforms: linux/amd64
         push: true
-        tags: ${{steps.docker_meta.outputs.tags}}
-        labelss: ${{steps.docker_meta.outputs.labels}}
+        tags: ${{ steps.docker_meta.outputs.tags }}
+        labelss: ${{ steps.docker_meta.outputs.labels }}
         
           
