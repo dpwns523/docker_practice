@@ -28,12 +28,6 @@ jobs:
       with:
         images: dpwns523/simple_web_image
         # pr로인한 작업-> docker tag: pr-2, master push -> docker tag: master
-        tags: |
-          type=ref,event=branch
-          type=ref,event=pr
-          type=semver,pattern={{version}}
-          type=semver,pattern={{major}}.{{minor}}
-      
   
       # 이미지 빌드 후, 허브에 push    
     - name: Build and push Docker image
