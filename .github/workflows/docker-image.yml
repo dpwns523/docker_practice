@@ -23,7 +23,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}  
           password: ${{ secrets.DOCKER_PASSWORD }}   
         
-    - name: Docker_meta
+    - name: Docker meta
+      id: meta
       uses: docker/metadata-action@v3
       with:
         images: dpwns523/simple_web_image
@@ -37,7 +38,7 @@ jobs:
         file: ./dockerfile
         platforms: linux/amd64
         push: true
-        tags: ${{ steps.Docker_meta.outputs.tags }}
-        labelss: ${{ steps.Docker_meta.outputs.labels }}
+        tags: ${{ steps.meta.outputs.tags }}
+        labelss: ${{ steps.meta.outputs.labels }}
         
           
