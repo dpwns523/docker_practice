@@ -16,5 +16,5 @@ RUN pip3 install -r requirements.txt
 COPY . .
 
 # exec방식으로 명령을json으로 지정하여 실행
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+CMD [ "python", 'db.py', "--host=0.0.0.0"]
 #.
