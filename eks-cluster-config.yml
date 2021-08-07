@@ -1,0 +1,31 @@
+---
+apiVesion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: dpwns-eks-cluster # 생성할 클러스터명
+  region: ap-northeast-2
+
+vpc:
+  cidr: "172.31.0.0/16" # 클러스터에서 사용할 VPC의 CIDR
+iam:
+  withOIDC: true #AWS에서 인증한 내용이 쿠버에 연동될 수 있게
+
+managedNodeGroups:
+  - name: node-group # 클러스터의 노드 그룹명
+    intanceType: t2.micro # 클러스터 워커 노드의 인스턴스 타입
+    desiredCapacity: 1 # 클러스터 워커 노드의 개수
+    volumeSize: 10 # 클러스터 워커 노드의 EBS 용량 (GB)
+    spot: true # 비용 절감
+    ssh:
+      enableSsm: true
+    iam:
+      withAddonPolicies:
+        #imageBuilder: true # AWS ECR에 대한 권한 추가
+        albIngress: true  # albIngress에 대한 권한 추가
+        cloudWatch: true # cloudWatch에 대한 권한 추가
+        #autoScaler: true # auto scaling에 대한 권한 추가
+#cloudWatch:
+  # EKS 클러스터의 변경 사항과 성능을 모니터링 요금 부과
+  #clusterLogging:
+    #enableTypes: ["*"]
+
